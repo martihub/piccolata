@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_ismail/q1.unity
+    path: Assets/_ismail/Character.unity
     guid: 8556dc2d3357a8a4483d6dd777963e5b
   m_configObjects: {}
