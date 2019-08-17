@@ -9,8 +9,13 @@ public class MatchExtras : MonoBehaviour
     public GameObject player;
     [ListDrawerSettings(ShowIndexLabels = true)] public AudioClip[] successAudio;
     [ListDrawerSettings(ShowIndexLabels = true)] public AudioClip[] failureAudio;
-    [ListDrawerSettings(ShowIndexLabels = true)] public Word[] successWords;
-    [ListDrawerSettings(ShowIndexLabels = true)] public Word[] motivationWords;
+    [ListDrawerSettings(ShowIndexLabels = true)] public string[] successWords;
+    [ListDrawerSettings(ShowIndexLabels = true)] public string[] motivationWords;
+    [ListDrawerSettings(ShowIndexLabels = true)] public string[] scenarioWords;
+
+    Word[] _successWords;
+    Word[] _motivationWords;
+    Word[] _scenarioWords;
     AudioSource audioSource;
 
     public static MatchExtras instance;
@@ -26,8 +31,17 @@ public class MatchExtras : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        successWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/SuccessWords.json");
-        motivationWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json");
+        _successWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/SuccessWords.json");
+        _motivationWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json");
+        _scenarioWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/ScenarioWords.json");
+        successWords = new string[_successWords.Length];
+        motivationWords = new string[_motivationWords.Length];
+        scenarioWords = new string[_motivationWords.Length];
+
+        for (int i = 0; i < _successWords.Length; i++) successWords[i] = _successWords[i];
+        for (int i = 0; i < _motivationWords.Length; i++) motivationWords[i] = _motivationWords[i];
+        for (int i = 0; i < _scenarioWords.Length; i++) scenarioWords[i] = _scenarioWords[i];
+
         audioSource = GetComponent<AudioSource>();
     }
 
