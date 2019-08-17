@@ -1,12 +1,21 @@
-{
+[
+  {
+    "Name": "ARC",
+    "Level": "7",
+    "Pos": {
+      "x": 12,
+      "y": 456,
+      "z": 82
+    }
+  },
+  {
+    "Name": "ALİ",
+    "Level": "10",
+    "Pos": {
+      "x": 456,
+      "y": 585,
+      "z": 159
+    }
+  }
 
- "Pos": {
-    "x": 0,
-    "y": 0,
-    "z": 3
-    },
-
-"Action":"Jump",
-
-"Talk0":"Hi boss. how are you doing. I hope you're good. I'm walking around."
-}
+]
