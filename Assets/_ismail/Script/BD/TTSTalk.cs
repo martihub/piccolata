@@ -7,15 +7,17 @@ namespace BehaviorDesigner.Runtime.Tasks
 {
     public class TTSTalk : Action
     {
-        public SharedString speech;
-        AudioSource _audio;
+        public TalkType talkType;
+        public string speech;
+        public SharedFloat speechDuration;
 
         public override void OnStart()
         {
-            GetComponent<PlayerExtras>().PlayTTS(speech.Value);
+            speech = MatchExtras.instance.GetSpeech(talkType);
+            int count = speech.Split(' ').Length;
+            speechDuration.Value = count / 2;   //Konuşma süresinin toplam kelimelerin yarısı oluğunu sizden öğrenmiştim.
+            GetComponent<PlayerExtras>().PlayTTS(speech);
         }
-
-
     }
 }
 

@@ -17,6 +17,7 @@ public class MatchManager : MonoBehaviour
 
     public void GenerateSlots(int _count)
     {
+        Debug.Log(_count);
         for (int i = 0; i < _count * 2; i++)
         {
             GameObject slot = Instantiate(Resources.Load<GameObject>(gamesFolder + "/" + gameType.ToString() + "/" + "Slot"));
