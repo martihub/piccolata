@@ -25,17 +25,13 @@ public class RotateToFace : PcBase, IPcAbility
         localLookDirection.y = 0;
         var yRot = MathUtility.ClampInnerAngle(Quaternion.LookRotation(localLookDirection.normalized, m_CharacterLocomotion.Up).eulerAngles.y);
         int posNeg = yRot > 0 ? 1 : -1;
-        if (Mathf.Abs(yRot) > 3)
+        if (Mathf.Abs(yRot) > 5)
         {
             m_CharacterLocomotion.Torque = Quaternion.Euler(0, posNeg * rotSpeed, 0);
         }
         else
         {
             GetComponent<BehaviorTree>().SetVariableValue("isAbilityStoped", true);
-            //if (GetComponent<LocalLookSource>())
-            //{
-            //    GetComponent<LocalLookSource>().Target = null;
-            //}
             StopAbility();
         }
     }
