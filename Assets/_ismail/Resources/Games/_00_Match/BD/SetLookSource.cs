@@ -34,8 +34,8 @@ public class SetLookSource : Action
 
     public override TaskStatus OnUpdate()
     {
-        characterIK.LookAtHeadWeight = lookWeight / 2;
-        characterIK.LookAtBodyWeight = lookWeight / 4;
+        characterIK.LookAtHeadWeight = lookWeight / 2f;
+        characterIK.LookAtBodyWeight = lookWeight / 4f;
         return complete ? TaskStatus.Success : TaskStatus.Running;
     }
 
