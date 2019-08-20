@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Newtonsoft.Json;
 public class MatchExtras : MonoBehaviour
 {
 
@@ -18,6 +19,7 @@ public class MatchExtras : MonoBehaviour
     Word[] _motivationWords;
     Word[] _introWords;
     Word[] _goodbyeWords;
+    public Results[] _Results;
 
     AudioSource audioSource;
 
@@ -38,6 +40,7 @@ public class MatchExtras : MonoBehaviour
         _motivationWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json");
         _introWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/IntroWords.json");
         _goodbyeWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/GoodbyeWords.json");
+        _Results = GetFromJson<Results>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/SpeechReco.json");
 
         successWords = new string[_successWords.Length];
         motivationWords = new string[_motivationWords.Length];

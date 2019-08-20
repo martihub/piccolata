@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class UsingJsonDotNetInUnity : MonoBehaviour
 {
+    public List<Account> ACC;
     private void Awake()
     {
         var accountJames = new Account

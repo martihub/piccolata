@@ -52,57 +52,5 @@
       }
     }
   },
-  {
-    "Email": "onion@example.co.uk",
-    "Active": true,
-    "CreatedDate": "2013-01-20T00:00:00Z",
-    "Roles": [
-      "User",
-      "Admin"
-    ],
-    "Ve": {
-      "x": 0.0,
-      "y": 3.0,
-      "z": 1.0,
-      "normalized": {
-        "x": 0.0,
-        "y": 0.948683262,
-        "z": 0.316227764,
-        "normalized": {
-          "x": 0.0,
-          "y": 0.9486833,
-          "z": 0.3162278,
-          "magnitude": 1.0,
-          "sqrMagnitude": 1.00000012
-        },
-        "magnitude": 0.99999994,
-        "sqrMagnitude": 0.99999994
-      },
-      "magnitude": 3.1622777,
-      "sqrMagnitude": 10.0
-    },
-    "StrVector3Dictionary": {
-      "vr": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 1.0,
-        "magnitude": 1.0,
-        "sqrMagnitude": 1.0
-      },
-      "pc": {
-        "x": 9.0,
-        "y": 9.0,
-        "z": 1.0,
-        "normalized": {
-          "x": 0.7049344,
-          "y": 0.7049344,
-          "z": 0.07832605,
-          "magnitude": 1.0,
-          "sqrMagnitude": 1.0
-        },
-        "magnitude": 12.7671452,
-        "sqrMagnitude": 163.0
-      }
-    }
-  }
+
 ]

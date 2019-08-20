@@ -12,7 +12,7 @@ public struct Word
     public static implicit operator string(Word s) => s.word;
 }
 
-[System.Serializable]
+[Serializable]
 public struct CharIntro
 {
     public Vector3 Pos;
@@ -35,4 +35,18 @@ public struct SVector3
     }
 
     public static implicit operator Vector3(SVector3 s) => new Vector3(s.x, s.y, s.z);
+}
+
+[Serializable]
+public struct Alternatives
+{
+    public string transcript;
+    public float confidence;
+}
+
+[Serializable]
+public struct Results
+{
+    public Alternatives[] alternatives;
+
 }
