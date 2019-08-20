@@ -32,7 +32,7 @@ public class MainAudioRecognition : MonoBehaviour
     private int minFreq;
     private int maxFreq;
 
-    private string[] phrase = { "start", "stop", "turn left", "turn right", "turn back", "jump", "English", "German", "French","Deutsche", "englische", "halt" , "springen", "Biegen Sie links ab", "biegen Sie rechts ab","kehre um", "Englisch", "Französisch"};
+    private string[] phrase = { "start", "stop", "turn left", "turn right", "turn back", "jump", "English", "German", "French", "Deutsche", "englische", "halt", "springen", "Biegen Sie links ab", "biegen Sie rechts ab", "kehre um", "Englisch", "Französisch" };
 
     public static bool speechOut = false;
 
@@ -63,7 +63,7 @@ public class MainAudioRecognition : MonoBehaviour
     {
         lang = textBoxLang.text;
         MicLoudness = LevelMax();
-        
+
         if (Microphone.IsRecording(null))
         {
             if (MicLoudness < sensitivity && !recording)
@@ -98,25 +98,25 @@ public class MainAudioRecognition : MonoBehaviour
             else if (MicLoudness < sensitivity && recording && mute_flag)
             {
                 //recording_time += Time.deltaTime;
-                
+
                 mute_time += Time.deltaTime;
                 recording_time += Time.deltaTime;
                 if (mute_time >= 1.9f)
                     textBox.text = "Recording has stopped.";
                 else if (mute_time >= 0.5f && mute_time < 1.9f)
                     textBox.text = "Mute";
-                
-                if(mute_time >= 2.0f)
+
+                if (mute_time >= 2.0f)
                 {
                     textBox.text = "Mute";
                     //Microphone.End(null);
                     stopRecording();
-                    
+
                     mute_time = 0.0f;
                     recording_time = 0.0f;
                     mute_flag = false;
-                    recording = false;                   
-                }            
+                    recording = false;
+                }
             }
             else
             {
@@ -144,7 +144,7 @@ public class MainAudioRecognition : MonoBehaviour
     void stopRecording()
     {
         var position = Microphone.GetPosition(null);
-        Microphone.End(null); 
+        Microphone.End(null);
 
         var soundData = new float[goAudioSource.clip.samples * goAudioSource.clip.channels];
         goAudioSource.clip.GetData(soundData, 0);
@@ -158,8 +158,8 @@ public class MainAudioRecognition : MonoBehaviour
 
         var newClip = AudioClip.Create(goAudioSource.clip.name, position, goAudioSource.clip.channels, goAudioSource.clip.frequency, false, false);
 
-        newClip.SetData(newData, 0);       
-        
+        newClip.SetData(newData, 0);
+
         AudioClip.Destroy(goAudioSource.clip);
         //goAudioSource.clip = newClip;
         goAudioSource.clip = Microphone.Start(null, true, 60, maxFreq);
@@ -178,7 +178,7 @@ public class MainAudioRecognition : MonoBehaviour
 
         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
         SavWav.Save(filePath, newClip); //Save a temporary Wav File
-        
+
 
         string apiURL = "https://speech.googleapis.com/v1/speech:recognize?&key=" + apiKey;
         string Response;
@@ -198,12 +198,12 @@ public class MainAudioRecognition : MonoBehaviour
             {
                 if (resultString.Contains(phrase[i]))
                 {
-                    if(phrase[i] == "German" || phrase[i] == "Deutsche")
+                    if (phrase[i] == "German" || phrase[i] == "Deutsche")
                     {
                         textBoxLang.text = "German";
                     }
 
-                    if(phrase[i] == "English" || phrase[i] == "Englisch"|| phrase[i] == "englische")
+                    if (phrase[i] == "English" || phrase[i] == "Englisch" || phrase[i] == "englische")
                     {
                         textBoxLang.text = "English";
                     }
@@ -211,8 +211,8 @@ public class MainAudioRecognition : MonoBehaviour
                     textSentence.text += phrase[i];
                 }
             }
-            
-            
+
+
             string transcripts = "";
             if (jsonResults == null)
                 transcripts = null;
@@ -260,29 +260,29 @@ public class MainAudioRecognition : MonoBehaviour
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
-            
-           
+
+
             if (textBoxLang.text == "English")
             {
                 lang_code = "\"en-US\"";
                 phrase1 = "[{\"phrases\": [\"stop\",  \"jump\" , \"turn left\", \"turn right\", \"turn back\"," +
                     " \"English\", \"French\", \"German\"]}]},";
             }
-            else if(textBoxLang.text == "German")
+            else if (textBoxLang.text == "German")
             {
                 lang_code = "\"de-De\"";
                 phrase1 = "[{\"phrases\": [\"start\", \"Deutsche\",  \"halt\" , \"springen\", \"Biegen Sie links ab\", \"biegen Sie rechts ab\",\"kehre um\", \"Englisch\", \"Französisch\"]}]},";
             }
-            
+
 
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-               
+
                 string json = "{ \"config\": { \"languageCode\" : " + lang_code + ",\"speechContexts\": " + phrase1 +
                     "\"audio\" : { \"content\" : \"" + file64 + "\"}}";
 
-                Debug.Log("json-------"+json);
+                Debug.Log("json-------" + json);
                 streamWriter.Write(json);
                 streamWriter.Flush();
                 streamWriter.Close();
@@ -310,7 +310,7 @@ public class MainAudioRecognition : MonoBehaviour
 
 
     //Check mic level from 128 samples
-    
+
     float LevelMax()
     {
         int _sampleWindow = 128;
@@ -329,7 +329,7 @@ public class MainAudioRecognition : MonoBehaviour
                 levelMax = wavePeak;
             }
         }
-        return Mathf.Sqrt(Mathf.Sqrt(levelMax)); 
+        return Mathf.Sqrt(Mathf.Sqrt(levelMax));
     }
 
 }
