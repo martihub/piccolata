@@ -95,6 +95,7 @@ public class GoogleVoiceSpeech : MonoBehaviour
         float filenameRand = UnityEngine.Random.Range(0.0f, 10.0f);
         string filename = "testing" + filenameRand;
         //  Microphone.End(null); //Stop the audio recording
+        //  MicControlC.instance.StopMicrophone();
         if (!filename.ToLower().EndsWith(".wav"))
         {
             filename += ".wav";
@@ -103,6 +104,7 @@ public class GoogleVoiceSpeech : MonoBehaviour
         filePath = Path.Combine(Application.persistentDataPath, filePath);
         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
         SavWav.Save(filePath, goAudioSource.clip); //Save a temporary Wav File
+        Debug.Log(goAudioSource.clip.length);
         string apiURL = "https://speech.googleapis.com/v1/speech:recognize?&key=" + apiKey;
         string Response;
         Response = HttpUploadFile(apiURL, filePath, "file", "audio/wav; rate=44100");

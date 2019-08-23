@@ -31,5 +31,6 @@ public class MicControlD : MonoBehaviour
     public void ResetMic()
     {
         isStarted = false;
+        // MicControlC.instance.StartMicrophone();
     }
 }
