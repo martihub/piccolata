@@ -36,7 +36,7 @@ using UnityEngine.UI;
 public class GoogleVoiceSpeech : MonoBehaviour
 {
 
-    int listenDuration = 2;
+    int listenDuration = 5;
     public Text text;
     const int HEADER_SIZE = 44;
     private int minFreq;
@@ -76,13 +76,11 @@ public class GoogleVoiceSpeech : MonoBehaviour
     {
         if (micConnected)
         {
-            if (!Microphone.IsRecording(null))
-            {
-                goAudioSource.clip = Microphone.Start(null, true, listenDuration, maxFreq); //Currently set for a 7 second clip
-                Debug.Log("mic started");
-            }
+
+            goAudioSource.clip = Microphone.Start(null, true, listenDuration, maxFreq); //Currently set for a 7 second clip
+                                                                                        //    }
         }
-        StartCoroutine(SendRecord());
+        // StartCoroutine(SendRecord());
     }
 
     IEnumerator SendRecord()
@@ -93,86 +91,24 @@ public class GoogleVoiceSpeech : MonoBehaviour
 
     public void MicStopAndSend()
     {
+        Debug.Log("SEND");
         float filenameRand = UnityEngine.Random.Range(0.0f, 10.0f);
         string filename = "testing" + filenameRand;
-        Microphone.End(null); //Stop the audio recording
+        //  Microphone.End(null); //Stop the audio recording
         if (!filename.ToLower().EndsWith(".wav"))
         {
             filename += ".wav";
         }
-        // var filePath = Path.Combine("testing/", filename);
-        //filePath = Path.Combine(Application.persistentDataPath, filePath);
-        // Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-        string filePath = Application.streamingAssetsPath + filename;
+        var filePath = Path.Combine("testing/", filename);
+        filePath = Path.Combine(Application.persistentDataPath, filePath);
+        Directory.CreateDirectory(Path.GetDirectoryName(filePath));
         SavWav.Save(filePath, goAudioSource.clip); //Save a temporary Wav File
         string apiURL = "https://speech.googleapis.com/v1/speech:recognize?&key=" + apiKey;
         string Response;
         Response = HttpUploadFile(apiURL, filePath, "file", "audio/wav; rate=44100");
+        //goAudioSource.Play(); //Playback the recorded audio
         File.Delete(filePath); //Delete the Temporary Wav file
     }
-
-
-    //void OnGUI()
-    //{
-    //    if (micConnected)
-    //    {
-    //        //If the audio from any microphone isn't being recorded
-    //        if (!Microphone.IsRecording(null))
-    //        {
-    //            //Case the 'Record' button gets pressed
-    //            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 25, 200, 50), "Record"))
-    //            {
-    //                //Start recording and store the audio captured from the microphone at the AudioClip in the AudioSource
-    //                goAudioSource.clip = Microphone.Start(null, true, 7, maxFreq); //Currently set for a 7 second clip
-    //                Debug.Log("Recording Started");
-    //            }
-    //        }
-    //        else //Recording is in progress
-    //        {
-
-    //            //Case the 'Stop and Play' button gets pressed
-    //            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 25, 200, 50), "Stop and Play!"))
-    //            {
-    //                float filenameRand = UnityEngine.Random.Range(0.0f, 10.0f);
-
-    //                string filename = "testing" + filenameRand;
-
-    //                Microphone.End(null); //Stop the audio recording
-
-    //                Debug.Log("Recording Stopped");
-
-    //                if (!filename.ToLower().EndsWith(".wav"))
-    //                {
-    //                    filename += ".wav";
-    //                }
-
-    //                var filePath = Path.Combine("testing/", filename);
-    //                filePath = Path.Combine(Application.persistentDataPath, filePath);
-    //                Debug.Log("Created filepath string: " + filePath);
-
-    //                // Make sure directory exists if user is saving to sub dir.
-    //                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-    //                SavWav.Save(filePath, goAudioSource.clip); //Save a temporary Wav File
-    //                Debug.Log("Saving @ " + filePath);
-    //                //Insert your API KEY here.
-    //                string apiURL = "https://speech.googleapis.com/v1/speech:recognize?&key=" + apiKey;
-    //                string Response;
-
-    //                Debug.Log("Uploading " + filePath);
-    //                Response = HttpUploadFile(apiURL, filePath, "file", "audio/wav; rate=44100");
-
-    //                File.Delete(filePath); //Delete the Temporary Wav file
-    //            }
-    //            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 25, 200, 50), "Recording in progress...");
-    //        }
-    //    }
-    //    else // No microphone
-    //    {
-    //        //Print a red "Microphone not connected!" message at the center of the screen
-    //        GUI.contentColor = Color.red;
-    //        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 25, 200, 50), "Microphone not connected!");
-    //    }
-    //}
 
     public string HttpUploadFile(string url, string file, string paramName, string contentType)
     {
@@ -187,11 +123,13 @@ public class GoogleVoiceSpeech : MonoBehaviour
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                string json = "{ \"config\": { \"languageCode\" : \"en-US\" }, \"audio\" : { \"content\" : \"" + file64 + "\"}}";
+                //  string json = "{ \"config\": { \"languageCode\" : \"en-US\" }, \"audio\" : { \"content\" : \"" + file64 + "\"}}";
+                string json = "{ \"config\": { \"languageCode\" : \"tr\" }, \"audio\" : { \"content\" : \"" + file64 + "\"}}";
                 streamWriter.Write(json);
                 streamWriter.Flush();
                 streamWriter.Close();
             }
+
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
@@ -202,20 +140,21 @@ public class GoogleVoiceSpeech : MonoBehaviour
         catch (WebException ex)
         {
             var resp = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+            Debug.Log(resp);
         }
         return "empty";
     }
 
+    string transcripts;
     public void ShowResult(string str)
     {
-        MicInput.instance.RestartMic();
+        //   Debug.Log(str);
         var jsonresponse = SimpleJSON.JSON.Parse(str);
         string resultString = jsonresponse["results"][0].ToString();
         var jsonResults = SimpleJSON.JSON.Parse(resultString);
-        string transcripts = jsonResults["alternatives"][0]["transcript"].ToString();
-        if (transcripts != null) text.text = transcripts;
-
-
+        if (jsonResults != null) { transcripts = jsonResults["alternatives"][0]["transcript"].ToString(); }
+        text.text = transcripts;
+        MicControlD.instance.ResetMic();
     }
 }
 
