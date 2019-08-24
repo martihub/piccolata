@@ -94,8 +94,6 @@ public class GoogleVoiceSpeech : MonoBehaviour
         Debug.Log("SEND");
         float filenameRand = UnityEngine.Random.Range(0.0f, 10.0f);
         string filename = "testing" + filenameRand;
-        //  Microphone.End(null); //Stop the audio recording
-        //  MicControlC.instance.StopMicrophone();
         if (!filename.ToLower().EndsWith(".wav"))
         {
             filename += ".wav";
@@ -106,17 +104,15 @@ public class GoogleVoiceSpeech : MonoBehaviour
         SavWav.Save(filePath, goAudioSource.clip); //Save a temporary Wav File
         Debug.Log(goAudioSource.clip.length);
         string apiURL = "https://speech.googleapis.com/v1/speech:recognize?&key=" + apiKey;
-        string Response;
-        Response = HttpUploadFile(apiURL, filePath, "file", "audio/wav; rate=44100");
-        //goAudioSource.Play(); //Playback the recorded audio
+        HttpUploadFile(apiURL, filePath, "file", "audio/wav; rate=44100");
         File.Delete(filePath); //Delete the Temporary Wav file
     }
 
     public string HttpUploadFile(string url, string file, string paramName, string contentType)
     {
-        System.Net.ServicePointManager.ServerCertificateValidationCallback += (o, certificate, chain, errors) => true;
-        Byte[] bytes = File.ReadAllBytes(file);
-        String file64 = Convert.ToBase64String(bytes, Base64FormattingOptions.None);
+        ServicePointManager.ServerCertificateValidationCallback += (o, certificate, chain, errors) => true;
+        byte[] bytes = File.ReadAllBytes(file);
+        string file64 = Convert.ToBase64String(bytes, Base64FormattingOptions.None);
         try
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -125,7 +121,6 @@ public class GoogleVoiceSpeech : MonoBehaviour
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                //  string json = "{ \"config\": { \"languageCode\" : \"en-US\" }, \"audio\" : { \"content\" : \"" + file64 + "\"}}";
                 string json = "{ \"config\": { \"languageCode\" : \"tr\" }, \"audio\" : { \"content\" : \"" + file64 + "\"}}";
                 streamWriter.Write(json);
                 streamWriter.Flush();
