@@ -185,7 +185,7 @@ public class MainAudioRecognition : MonoBehaviour
                     textBox.text = "Say again";
                     textRecBox.text = transcripts;
                     speechOut = true;
-                    ManageGoogleWords.instance.SetWords = transcripts;
+                    ManageGoogleWords.instance.SetWords(transcripts);
                     TestTTS.sound_text = transcripts;
                 }
             }

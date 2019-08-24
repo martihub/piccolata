@@ -5,22 +5,25 @@ using UnityEngine;
 public class ManageGoogleWords : MonoBehaviour
 {
 
+    AudioSource audioSource;
+
     public static ManageGoogleWords instance;
     void Awake()
     {
-        if (!instance)
-        {
-            instance = this;
-        }
+        if (!instance) instance = this;
+    }
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     private string words;
-    public string SetWords {
-        get { return words; }
-        set {
-            words = value;
-            Debug.Log(words);
-        }
+    public void SetWords(string str)
+    {
+        words = str;
+        StartCoroutine(SpeechDownloader.DownloadTheAudio(audioSource, words));
+        Debug.Log(words);
     }
 
 }
