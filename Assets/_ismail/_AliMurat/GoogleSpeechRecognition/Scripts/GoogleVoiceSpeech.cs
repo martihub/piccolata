@@ -156,7 +156,7 @@ public class GoogleVoiceSpeech : MonoBehaviour
         var jsonResults = SimpleJSON.JSON.Parse(resultString);
         if (jsonResults != null) { transcripts = jsonResults["alternatives"][0]["transcript"].ToString(); }
         text.text = transcripts;
-        MicControlD.instance.ResetMic();
+        // MicControlD.instance.ResetMic();
     }
 }
 

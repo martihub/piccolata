@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_ismail/Scenes/_OLD/_sil.unity
-    guid: 1dcb5d88d9688084b9c24690bf2bf02b
+    path: Assets/_ismail/_AliMurat/GoogleSpeechRecognition/Scripts/Ready/Scenes/MainGame.unity
+    guid: 8563726bd2430cc46b897403e68f47a2
   m_configObjects: {}

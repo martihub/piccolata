@@ -19,18 +19,37 @@ public class MicControlD : MonoBehaviour
         }
     }
 
-    void Update()
+    //void Update()
+    //{
+    //    if (micLevel > sendTreshold && !isStarted)
+    //    {
+    //        isStarted = true;
+    //        GoogleVoiceSpeech.instance.MicStopAndSend();
+    //    }
+    //}
+
+    //public void ResetMic()
+    //{
+    //    isStarted = false;
+    //    // MicControlC.instance.StartMicrophone();
+    //}
+
+    public float f2 = 0;
+    void OnAudioFilterRead(float[] data, int channels)
     {
-        if (micLevel > sendTreshold && !isStarted)
+        for (var i = 0; i < data.Length; ++i)
         {
-            isStarted = true;
-            GoogleVoiceSpeech.instance.MicStopAndSend();
+
+            if (data[i] > f2) f2 = data[i];
         }
     }
 
-    public void ResetMic()
+    private void FixedUpdate()
     {
-        isStarted = false;
-        // MicControlC.instance.StartMicrophone();
+        if (f2 > 0) f2 -= Time.deltaTime;
     }
+
+
+
+
 }

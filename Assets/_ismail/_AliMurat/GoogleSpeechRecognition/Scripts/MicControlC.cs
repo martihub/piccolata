@@ -249,9 +249,9 @@ public class MicControlC : MonoBehaviour
 
     private void FixedUpdate()
     {
-        {
-            if (f2 > 0) f2 -= Time.deltaTime;
-        }
+
+        if (f2 > 0) f2 -= Time.deltaTime;
+
         //tr.position = new Vector3(0, f2 * 10, 0);
         micControlD.micLevel = f2;
     }
