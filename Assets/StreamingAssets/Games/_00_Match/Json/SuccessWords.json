@@ -1,11 +1,8 @@
-[
-  {
-    "word": "You are awesome!"
-  },
-  {
-    "word": "Let's go!"
-  },
-  {
-    "word": "That's it!"
-  }
-]
+{
+  "version": "216",
+  "word": [
+    "You are awesome!",
+    "Let's go!",
+    "That's it!"
+  ]
+}

@@ -1,11 +1,7 @@
-[
-  {
-    "word": "OK. Not problem"
-  },
-  {
-    "word": "You can do it!"
-  },
-  {
-    "word": "Don't be sad. Go on!"
-  }
-]
+{
+  "word": [
+    "OK. Not problem",
+    "You can do it!",
+    "Don't be sad. Go on!"
+  ]
+}

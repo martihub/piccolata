@@ -50,3 +50,11 @@ public struct Results
     public Alternatives[] alternatives;
 
 }
+
+[Serializable]
+public struct AssetSubFolder
+{
+    public string Name;
+    public int Version;
+    public string[] Assets;
+}

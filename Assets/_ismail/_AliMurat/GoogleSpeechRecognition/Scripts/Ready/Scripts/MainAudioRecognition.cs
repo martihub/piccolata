@@ -214,8 +214,6 @@ public class MainAudioRecognition : MonoBehaviour
             }
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            // Debug.Log(httpResponse);
-
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var result = streamReader.ReadToEnd();

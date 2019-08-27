@@ -26,4 +26,9 @@ public class ManageGoogleWords : MonoBehaviour
         Debug.Log(words);
     }
 
+    public void Aloooo()
+    {
+
+    }
+
 }

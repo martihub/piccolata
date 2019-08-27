@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Newtonsoft.Json;
+using System.IO;
 public class MatchExtras : MonoBehaviour
 {
 
@@ -14,15 +15,7 @@ public class MatchExtras : MonoBehaviour
     [ListDrawerSettings(ShowIndexLabels = true)] public string[] motivationWords;
     [ListDrawerSettings(ShowIndexLabels = true)] public string[] introWords;
     [ListDrawerSettings(ShowIndexLabels = true)] public string[] goodbyeWords;
-
-    Word[] _successWords;
-    Word[] _motivationWords;
-    Word[] _introWords;
-    Word[] _goodbyeWords;
-    public Results[] _Results;
-
     AudioSource audioSource;
-
     public static MatchExtras instance;
 
     private void Awake()
@@ -35,21 +28,23 @@ public class MatchExtras : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        _successWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/SuccessWords.json");
-        _motivationWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json");
-        _introWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/IntroWords.json");
-        _goodbyeWords = GetFromJson<Word>.GetArray(Application.streamingAssetsPath + "/Games/_00_Match/Json/GoodbyeWords.json");
+        var _successWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/SuccessWords.json"));
+        var _motivationWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json"));
+        var _introWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/IntroWords.json"));
+        var _goodbyeWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/GoodbyeWords.json"));
 
-        successWords = new string[_successWords.Length];
-        motivationWords = new string[_motivationWords.Length];
-        introWords = new string[_introWords.Length];
-        goodbyeWords = new string[_goodbyeWords.Length];
+        Debug.Log(_successWords["version"]);
 
-        for (int i = 0; i < _successWords.Length; i++) successWords[i] = _successWords[i];
-        for (int i = 0; i < _motivationWords.Length; i++) motivationWords[i] = _motivationWords[i];
-        for (int i = 0; i < _introWords.Length; i++) introWords[i] = _introWords[i];
-        for (int i = 0; i < _goodbyeWords.Length; i++) goodbyeWords[i] = _goodbyeWords[i];
+        successWords = new string[_successWords["word"].Count];
+        motivationWords = new string[_motivationWords["word"].Count];
+        introWords = new string[_introWords["word"].Count];
+        goodbyeWords = new string[_goodbyeWords["word"].Count];
+
+        for (int i = 0; i < _successWords["word"].Count; i++) successWords[i] = _successWords["word"][i];
+        for (int i = 0; i < _motivationWords["word"].Count; i++) motivationWords[i] = _motivationWords["word"][i];
+        for (int i = 0; i < _introWords["word"].Count; i++) introWords[i] = _introWords["word"][i];
+        for (int i = 0; i < _goodbyeWords["word"].Count; i++) goodbyeWords[i] = _goodbyeWords["word"][i];
+
 
         audioSource = GetComponent<AudioSource>();
     }
