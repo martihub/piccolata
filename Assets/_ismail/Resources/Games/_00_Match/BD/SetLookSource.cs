@@ -16,9 +16,14 @@ public class SetLookSource : Action
 
     LocalLookSource lookSource;
     CharacterIK characterIK;
-    SharedTweener storeTweener;
+    public SharedTweener storeTweener;
 
     private bool complete;
+
+    void Start()
+    {
+        //storeTweener.Value;
+    }
 
     public override void OnStart()
     {

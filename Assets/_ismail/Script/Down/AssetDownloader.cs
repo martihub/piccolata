@@ -3,28 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
+using System;
 
 public class AssetDownloader : MonoBehaviour
 {
 
-    string _url = "http://localhost/";
-    string url;
+    string webLink;
+    string jsonUrl;
     public GameType gameType;
-    // public string[] assets;
-    public AssetSubFolder[] assetSubFolders;
-
+    public AssetSubFolder[] localAssetSubFolders;
+    public AssetSubFolder[] webAssetSubFolders;
+    string streamingAssetsPath;
+    string webJson;
 
     void Start()
     {
-        url = _url + gameType + "/" + "Asset.json";
-        StartCoroutine(GetText());
+        //webLink = "http://localhost/games/" + gameType;
+        webLink = "http://www.piccolata.com/update/" + gameType;
+        streamingAssetsPath = Application.streamingAssetsPath + "/games/" + gameType;
+        GetLocelJson();
+        StartCoroutine(GetWebJsonIE());
 
-        //  StartCoroutine(SaveDownloaded());
+        string str = "12";
+        int a = str.ToInt();
+        Debug.Log(a);
     }
 
-    IEnumerator GetText()
+    IEnumerator GetWebJsonIE()
     {
-        UnityWebRequest www = UnityWebRequest.Get(url);
+        jsonUrl = webLink + "/Assets.json";
+        UnityWebRequest www = UnityWebRequest.Get(jsonUrl);
         yield return www.SendWebRequest();
         if (www.isNetworkError || www.isHttpError)
         {
@@ -32,52 +40,85 @@ public class AssetDownloader : MonoBehaviour
         }
         else
         {
-            SetAssets(www.downloadHandler.text);
+            SetAssetLists(www.downloadHandler.text, ref webAssetSubFolders);
+            webJson = www.downloadHandler.text;
+            File.WriteAllText(streamingAssetsPath + " /Assets.json", webJson);
         }
+        CompareTwoAssetsAndCreateDir();
     }
 
-    void SetAssets(string _str)
+    void GetLocelJson()
     {
-        var str = SimpleJSON.JSON.Parse(_str);
-        assetSubFolders = new AssetSubFolder[str[0].Count];
+        string path = streamingAssetsPath + "/Assets.json";
+        string json = File.ReadAllText(path);
+        SetAssetLists(json, ref localAssetSubFolders);
+    }
 
+    void SetAssetLists(string _json, ref AssetSubFolder[] _assetSubFolders)
+    {
+        var str = SimpleJSON.JSON.Parse(_json);
+        _assetSubFolders = new AssetSubFolder[str[0].Count];
         for (int i = 0; i < str["AllFolders"].Count; i++)
         {
-            assetSubFolders[i].Assets = new string[str["AllFolders"][i]["Assets"].Count];
+            _assetSubFolders[i].Assets = new string[str["AllFolders"][i]["Assets"].Count];
         }
-
         for (int i = 0; i < str[0].Count; i++)
         {
-            assetSubFolders[i].Name = str["AllFolders"][i]["Name"];
-            assetSubFolders[i].Version = str["AllFolders"][i]["Version"].AsInt;
+            _assetSubFolders[i].Name = str["AllFolders"][i]["Name"];
+            _assetSubFolders[i].Version = str["AllFolders"][i]["Version"].AsInt;
             for (int j = 0; j < str["AllFolders"][i]["Assets"].Count; j++)
             {
-                assetSubFolders[i].Assets[j] = str["AllFolders"][i]["Assets"][j];
+                _assetSubFolders[i].Assets[j] = str["AllFolders"][i]["Assets"][j];
             }
         }
     }
 
-    //IEnumerator SaveDownloaded()
-    //{
-    //    UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://localhost/_00_Match/00_1.png");
-    //    yield return www.SendWebRequest();
+    void CompareTwoAssetsAndCreateDir()
+    {
+        int difference = webAssetSubFolders.Length - localAssetSubFolders.Length;
+        if (difference != 0)
+        {
+            for (int i = 0; i < difference; i++)
+            {
+                int a = localAssetSubFolders.Length + i;
+                string s = $"{a:D2}";
+                Directory.CreateDirectory(streamingAssetsPath + "/" + s);
+                DownloadAllSubfolderContent(s);
+            }
+        }
+    }
 
-    //    if (www.isNetworkError || www.isHttpError)
-    //    {
-    //        Debug.Log(www.error);
-    //    }
-    //    else
-    //    {
-    //        Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-    //        SaveTextureAsPNG(myTexture, Application.streamingAssetsPath + "/Games/_00_Match/" + "img.png");
-    //    }
-    //}
+    void DownloadAllSubfolderContent(string _subfolder)
+    {
+        int a = _subfolder.ToInt();
+        string[] subFolder = webAssetSubFolders[a].Assets;
+        foreach (var asset in subFolder)
+        {
+            StartCoroutine(SaveDownloaded(_subfolder, asset));
+        }
 
+    }
 
-    //public void SaveTextureAsPNG(Texture2D _texture, string _fullPath)
-    //{
-    //    byte[] _bytes = _texture.EncodeToPNG();
-    //    System.IO.File.WriteAllBytes(_fullPath, _bytes);
-    //    Debug.Log(_bytes.Length / 1024 + "Kb was saved as: " + _fullPath);
-    //}
+    IEnumerator SaveDownloaded(string _subFolder, string _asset)
+    {
+        string assetLink = webLink + "/" + _subFolder + "/" + _asset;
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(assetLink);
+        yield return www.SendWebRequest();
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            SaveTextureAsPNG(myTexture, streamingAssetsPath + "/" + _subFolder + "/" + _asset);
+        }
+    }
+
+    public void SaveTextureAsPNG(Texture2D _texture, string _fullPath)
+    {
+        byte[] _bytes = _texture.EncodeToPNG();
+        File.WriteAllBytes(_fullPath, _bytes);
+
+    }
 }
