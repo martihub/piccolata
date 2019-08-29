@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4089493cdbca2d44c9858e12f0168f9c, type: 3}
+  m_Name: Platforms
+  m_EditorClassIdentifier: 
+  Rules:
+  - Value: Android
+    Type: 1
+    Preset: {fileID: 11400000, guid: d483e8fa50cfd9b49b8d548ccd99fa16, type: 2}
+  - Value: IPhone
+    Type: 1
+    Preset: {fileID: 11400000, guid: 12df3f67a44c4db4eb4d6b56a88ad431, type: 2}
+  - Value: Mac
+    Type: 1
+    Preset: {fileID: 11400000, guid: 4f5bb2ea823e20d40879c0bf4a44ccd8, type: 2}
+  - Value: Win
+    Type: 1
+    Preset: {fileID: 11400000, guid: a48d8ba1eb739eb4a84d59f94e69f68f, type: 2}
+  - Value: Win{32,64}
+    Type: 2
+    Preset: {fileID: 11400000, guid: a48d8ba1eb739eb4a84d59f94e69f68f, type: 2}
+  - Value: Linux
+    Type: 1
+    Preset: {fileID: 11400000, guid: d131efc6a211e30439d1c0881f7a3fe4, type: 2}
+  - Value: Playstation
+    Type: 1
+    Preset: {fileID: 11400000, guid: acebc2e5f53d4e44aaffa96345fdb988, type: 2}
+  - Value: XBox
+    Type: 1
+    Preset: {fileID: 11400000, guid: 08e3af852190cbc42a3deda09f1c9aaa, type: 2}
+  - Value: WebGL
+    Type: 1
+    Preset: {fileID: 11400000, guid: a83f84e2da08ef347bc6d41312e9994b, type: 2}

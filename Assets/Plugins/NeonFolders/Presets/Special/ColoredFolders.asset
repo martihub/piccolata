@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4e3ee3f029d564bb98eb99ad98a20d, type: 3}
+  m_Name: ColoredFolders
+  m_EditorClassIdentifier: 
+  LargeIcon:
+    Layers:
+    - Icon: {fileID: 2800000, guid: c37b5e3a1b96fe8438673e8bc3f0c3e2, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}
+    - Icon: {fileID: 2800000, guid: d8f48724e1e24f7449e25ee5e57314e8, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0.4, y: 0.4}
+      Scale: {x: 0.3, y: 0.3}
+    - Icon: {fileID: 2800000, guid: 25ed07e9276fe944ba3279bfe857c236, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0.5, y: 0.45}
+      Scale: {x: 0.3, y: 0.3}
+    - Icon: {fileID: 2800000, guid: ccd989884b3f08e4794c228df7653339, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0.6, y: 0.5}
+      Scale: {x: 0.3, y: 0.3}
+  SmallIcon:
+    Layers: []

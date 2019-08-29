@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4e3ee3f029d564bb98eb99ad98a20d, type: 3}
+  m_Name: Materials
+  m_EditorClassIdentifier: 
+  LargeIcon:
+    Layers:
+    - Icon: {fileID: 2800000, guid: 60e7d0b03c8d3f14aa25e22434518997, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}
+  SmallIcon:
+    Layers:
+    - Icon: {fileID: 2800000, guid: bc6775d23a10eb54b9778b35c3c18451, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}

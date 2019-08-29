@@ -1,0 +1,1 @@
+git doesn't track empty directories, therefore this file's sole purpose is to exist, such that the directory will be tracked by git.

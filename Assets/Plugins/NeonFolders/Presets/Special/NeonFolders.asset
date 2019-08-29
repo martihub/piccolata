@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4e3ee3f029d564bb98eb99ad98a20d, type: 3}
+  m_Name: NeonFolders
+  m_EditorClassIdentifier: 
+  LargeIcon:
+    Layers:
+    - Icon: {fileID: 2800000, guid: 283da13c6b842b644a7e227214ee27f5, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}
+    - Icon: {fileID: 2800000, guid: 616630f2343fc7f43bba9aed8954a5b8, type: 3}
+      BlendColor: {r: 0, g: 0.2965517, b: 1, a: 0.484}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}
+    - Icon: {fileID: 2800000, guid: 5e4ffd4f8cd9cb14db502657599ea5d2, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0.4, y: 0.3}
+      Scale: {x: 0.5, y: 0.5}
+  SmallIcon:
+    Layers: []

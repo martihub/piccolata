@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4089493cdbca2d44c9858e12f0168f9c, type: 3}
+  m_Name: Basics
+  m_EditorClassIdentifier: 
+  Rules:
+  - Value: Animation*
+    Type: 2
+    Preset: {fileID: 11400000, guid: 689bfcc83e1a6a64dab41ab36a1751cb, type: 2}
+  - Value: Audio
+    Type: 1
+    Preset: {fileID: 11400000, guid: d38a60c167b09e04e86432df431a09c4, type: 2}
+  - Value: Script*
+    Type: 2
+    Preset: {fileID: 11400000, guid: e0efcbe155fb60642a429946f8b9d0cf, type: 2}
+  - Value: Extensions
+    Type: 1
+    Preset: {fileID: 11400000, guid: fa3800244fe76af4ea220ba4068be314, type: 2}
+  - Value: Fonts
+    Type: 1
+    Preset: {fileID: 11400000, guid: 4d7bad4dcf3a9424a8761bb3568073f0, type: 2}
+  - Value: Materials
+    Type: 1
+    Preset: {fileID: 11400000, guid: 744739ec9b45ecf41838849a9eef03aa, type: 2}
+  - Value: Meshes
+    Type: 1
+    Preset: {fileID: 11400000, guid: 084dc83293fc96a4988c9fb2d0be1c43, type: 2}
+  - Value: Music
+    Type: 1
+    Preset: {fileID: 11400000, guid: a50022f83e6933045924dc9106b6a579, type: 2}
+  - Value: Plugins
+    Type: 1
+    Preset: {fileID: 11400000, guid: 8773365d7747bfd4e94443834f303d4b, type: 2}
+  - Value: Prefabs
+    Type: 1
+    Preset: {fileID: 11400000, guid: 6f6df9bb3685ea3469e22c66572730b2, type: 2}
+  - Value: Presets
+    Type: 1
+    Preset: {fileID: 11400000, guid: 6f6df9bb3685ea3469e22c66572730b2, type: 2}
+  - Value: Scenes
+    Type: 1
+    Preset: {fileID: 11400000, guid: 5d9fb7c3d92cf99498d44aeac5f5db70, type: 2}
+  - Value: Settings
+    Type: 1
+    Preset: {fileID: 11400000, guid: bcfef295ad14ecd4ea4f53ebe92a11ea, type: 2}
+  - Value: Shaders
+    Type: 1
+    Preset: {fileID: 11400000, guid: 53ca2ed519a177b42848321240624e97, type: 2}
+  - Value: Sounds
+    Type: 1
+    Preset: {fileID: 11400000, guid: f0f0e282e273fd643b2db52d9c757519, type: 2}
+  - Value: Terrains
+    Type: 1
+    Preset: {fileID: 11400000, guid: cfd8fe09065e5f14a9a3c8dab95434a3, type: 2}
+  - Value: Textures
+    Type: 1
+    Preset: {fileID: 11400000, guid: a16c4d42d4fc6f545aec95dffdbb537f, type: 2}
+  - Value: Icons
+    Type: 1
+    Preset: {fileID: 11400000, guid: a16c4d42d4fc6f545aec95dffdbb537f, type: 2}
+  - Value: Assets/JSON
+    Type: 0
+    Preset: {fileID: 11400000, guid: 115d86e9c3a39884f99be0abb777f42d, type: 2}
+  - Value: Assets/_ismail
+    Type: 0
+    Preset: {fileID: 11400000, guid: 4d7bad4dcf3a9424a8761bb3568073f0, type: 2}

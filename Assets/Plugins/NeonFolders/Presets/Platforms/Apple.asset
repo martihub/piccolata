@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4e3ee3f029d564bb98eb99ad98a20d, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  LargeIcon:
+    Layers:
+    - Icon: {fileID: 2800000, guid: d8f48724e1e24f7449e25ee5e57314e8, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}
+    - Icon: {fileID: 2800000, guid: 41925e5a799902b4fa6a0c08de518961, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0.4, y: 0.3}
+      Scale: {x: 0.5, y: 0.5}
+  SmallIcon:
+    Layers:
+    - Icon: {fileID: 2800000, guid: d594b71350e857841a85a8db53d5ccfc, type: 3}
+      BlendColor: {r: 0, g: 0.5862067, b: 1, a: 1}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}
+    - Icon: {fileID: 2800000, guid: 41925e5a799902b4fa6a0c08de518961, type: 3}
+      BlendColor: {r: 1, g: 1, b: 1, a: 1}
+      Offset: {x: 0, y: 0}
+      Scale: {x: 1, y: 1}

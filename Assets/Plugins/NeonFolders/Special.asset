@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4089493cdbca2d44c9858e12f0168f9c, type: 3}
+  m_Name: Special
+  m_EditorClassIdentifier: 
+  Rules:
+  - Value: Editor
+    Type: 1
+    Preset: {fileID: 11400000, guid: c673f0989f0704d46b13db67c7ffeea7, type: 2}
+  - Value: Editor Default Resources
+    Type: 1
+    Preset: {fileID: 11400000, guid: da56511fb117cb143885e1d5e1f8aed6, type: 2}
+  - Value: Resources
+    Type: 1
+    Preset: {fileID: 11400000, guid: 7aff37501c99be343a4a8487d8923b74, type: 2}
+  - Value: Gizmos
+    Type: 1
+    Preset: {fileID: 11400000, guid: c7a940629a22b8540aaeba97e2a0610e, type: 2}
+  - Value: NeonFolders
+    Type: 1
+    Preset: {fileID: 11400000, guid: 7a3fa250904dbbc478883fe746ee5251, type: 2}
+  - Value: ColoredFolders
+    Type: 1
+    Preset: {fileID: 11400000, guid: 6f15697a1df16b84fb6670034741578c, type: 2}
+  - Value: CompleteIcons
+    Type: 1
+    Preset: {fileID: 11400000, guid: 0d84a79c35da4744a9054e98675d2e20, type: 2}
+  - Value: Platforms
+    Type: 1
+    Preset: {fileID: 11400000, guid: b4e36e05f57d6154c8a73b5640eb76c3, type: 2}
+  - Value: Assets/StreamingAssets/Games/_00_Match/Json
+    Type: 0
+    Preset: {fileID: 11400000, guid: 115d86e9c3a39884f99be0abb777f42d, type: 2}
+  - Value: Assets/StreamingAssets/Games/_00_Match/Bundles
+    Type: 0
+    Preset: {fileID: 11400000, guid: 6f6df9bb3685ea3469e22c66572730b2, type: 2}
+  - Value: Bundles
+    Type: 1
+    Preset: {fileID: 11400000, guid: 6f6df9bb3685ea3469e22c66572730b2, type: 2}
+  - Value: Json
+    Type: 1
+    Preset: {fileID: 11400000, guid: 115d86e9c3a39884f99be0abb777f42d, type: 2}
+  - Value: Assets/_ismail/Resources/Games/_00_Match/Bundles
+    Type: 0
+    Preset: {fileID: 11400000, guid: 25336a49314023641b7341ee2116a123, type: 2}
