@@ -60,17 +60,17 @@ public struct AssetSubFolder
 }
 
 [Serializable]
-public struct Assetbundle
+public struct bundle
 {
     public string Name;
     public int Version;
 }
 
 [Serializable]
-public struct AllAssetbundles
+public struct AllBundles
 {
     public string Name;
-    public Assetbundle[] Assetbundle;
+    public bundle[] bundles;
 }
 
 public enum GameType
@@ -78,7 +78,7 @@ public enum GameType
     _00_Match,
 }
 
-public enum AssetBundleType
+public enum BundleType
 {
     _00_BkgGameObjects,
     _01_Images
