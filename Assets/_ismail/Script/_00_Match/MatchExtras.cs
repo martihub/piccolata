@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Newtonsoft.Json;
 using System.IO;
 public class MatchExtras : MonoBehaviour
 {
 
 
     public GameObject player;
+
     [ListDrawerSettings(ShowIndexLabels = true)] public AudioClip[] successAudio;
     [ListDrawerSettings(ShowIndexLabels = true)] public AudioClip[] failureAudio;
     [ListDrawerSettings(ShowIndexLabels = true)] public string[] successWords;
     [ListDrawerSettings(ShowIndexLabels = true)] public string[] motivationWords;
     [ListDrawerSettings(ShowIndexLabels = true)] public string[] introWords;
     [ListDrawerSettings(ShowIndexLabels = true)] public string[] goodbyeWords;
+
     AudioSource audioSource;
     public static MatchExtras instance;
 

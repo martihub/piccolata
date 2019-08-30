@@ -37,3 +37,18 @@ MonoBehaviour:
   - Value: StreamingAssets
     Type: 1
     Preset: {fileID: 11400000, guid: 6f15697a1df16b84fb6670034741578c, type: 2}
+  - Value: Images
+    Type: 1
+    Preset: {fileID: 11400000, guid: cfd8fe09065e5f14a9a3c8dab95434a3, type: 2}
+  - Value: Gameobjects
+    Type: 1
+    Preset: {fileID: 11400000, guid: 6f6df9bb3685ea3469e22c66572730b2, type: 2}
+  - Value: Audios
+    Type: 1
+    Preset: {fileID: 11400000, guid: a50022f83e6933045924dc9106b6a579, type: 2}
+  - Value: _00_BkgGameObjects
+    Type: 1
+    Preset: {fileID: 11400000, guid: 6f6df9bb3685ea3469e22c66572730b2, type: 2}
+  - Value: _01_Images
+    Type: 1
+    Preset: {fileID: 11400000, guid: cfd8fe09065e5f14a9a3c8dab95434a3, type: 2}

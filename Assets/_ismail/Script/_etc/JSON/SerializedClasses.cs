@@ -58,3 +58,17 @@ public struct AssetSubFolder
     public int Version;
     public string[] Assets;
 }
+
+[Serializable]
+public struct Assetbundle
+{
+    public string Name;
+    public int Version;
+}
+
+[Serializable]
+public struct AllAssetbundles
+{
+    public string Name;
+    public Assetbundle[] Assetbundle;
+}

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
-using Newtonsoft.Json;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
 using UnityEditor;
