@@ -55,7 +55,3 @@ public class MatchManager : MonoBehaviour
     }
 }
 
-public enum GameType
-{
-    _00_Match,
-}

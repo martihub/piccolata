@@ -7,41 +7,21 @@ using System.IO;
 public class LoadImg : MonoBehaviour
 {
 
-    public Image img;
 
 
-    IEnumerator Start()
+    Shader standardShader;
+
+    void Start()
     {
+        standardShader = Shader.Find("Standard");
+        changeShader();
+    }
 
-
-        var myLoadedAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "00.assetbundle"));
-        if (myLoadedAssetBundle == null)
-        {
-            Debug.Log("Failed to load AssetBundle!");
-            yield return null;
-        }
-
-        var spr = myLoadedAssetBundle.LoadAsset<Sprite>("A");
-        img.sprite = spr;
-        myLoadedAssetBundle.Unload(false);
-
-        //yield return bundleLoadRequest;
-
-        //var myLoadedAssetBundle = bundleLoadRequest.assetBundle;
-        //if (myLoadedAssetBundle == null)
-        //{
-        //    Debug.Log("Failed to load AssetBundle!");
-        //    yield break;
-        //}
-
-        //var assetLoadRequest = myLoadedAssetBundle.LoadAssetAsync<Sprite>("A");
-        //yield return assetLoadRequest;
-
-        //Sprite spr = assetLoadRequest.asset as Sprite;
-
-        //myLoadedAssetBundle.Unload(false);
-
-
+    void changeShader() // because shadow for assetbundle is cucked.
+    {
+        var renderers = FindObjectsOfType<Renderer>() as Renderer[];
+        for (int i = 0; i < renderers.Length; i++)
+            renderers[i].material.shader = standardShader;
     }
 
 

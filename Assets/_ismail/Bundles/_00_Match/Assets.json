@@ -3,25 +3,6 @@
     {
       "Name": "00",
       "Version": "1"
-    },
-    {
-      "Name": "01",
-      "Version": "2"
-    },
-    {
-      "Name": "02",
-      "Version": "2"
-    }
-  ],
-
-  "_01_Images": [
-    {
-      "Name": "00",
-      "Version": "3"
-    },
-    {
-      "Name": "01",
-      "Version": "5"
     }
   ]
 }

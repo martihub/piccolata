@@ -16,14 +16,13 @@ public class AssetBundleDownload : MonoBehaviour
     public AllAssetbundles[] allWebAssetBundles;
     string streamingAssetsPath;
     string allBundlesPath;
-    public List<string> bundleTitles = new List<string>();
-
-    public Image img;
+    List<string> bundleTitles = new List<string>();
 
     void Start()
     {
-        //webLink = "http://www.piccolata.com/update/" + gameType;
-        webLink = "http://localhost/games/" + gameType + "/";
+        webLink = "http://www.piccolata.com/update/" + gameType + "/";
+        // webLink = "http://localhost/games/" + gameType + "/";
+        Debug.Log(webLink);
         allBundlesPath = Application.dataPath + "/_ismail/Bundles/" + gameType + "/";
         StartCoroutine(GetWebJsonIE());
     }
@@ -89,7 +88,11 @@ public class AssetBundleDownload : MonoBehaviour
             {
                 try
                 {
-                    string str = allLocalAssetBundles[i].Assetbundle[j].Name;
+                    if (allLocalAssetBundles[i].Assetbundle[j].Version < allWebAssetBundles[i].Assetbundle[j].Version)
+                    {
+                        StartCoroutine(SaveAndDownload(bundleTitles[i], allWebAssetBundles[i].Assetbundle[j].Name));
+                    }
+
                 }
                 catch (System.Exception)
                 {
@@ -114,16 +117,10 @@ public class AssetBundleDownload : MonoBehaviour
         File.WriteAllBytes(bundlePath, bytes);
     }
 
-    IEnumerator deneIE()
+    void deneIE()
     {
         var myLoadedAssetBundle = AssetBundle.LoadFromFile(Application.dataPath + "/_ismail/Bundles/" + gameType + "/_01_Images/" + "00.assetbundle");
-        if (myLoadedAssetBundle == null)
-        {
-            Debug.Log("Failed to load AssetBundle!");
-            yield return null;
-        }
         var spr = myLoadedAssetBundle.LoadAsset<Sprite>("A");
-        img.sprite = spr;
         myLoadedAssetBundle.Unload(false);
     }
 }

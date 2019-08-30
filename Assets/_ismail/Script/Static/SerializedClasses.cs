@@ -72,3 +72,14 @@ public struct AllAssetbundles
     public string Name;
     public Assetbundle[] Assetbundle;
 }
+
+public enum GameType
+{
+    _00_Match,
+}
+
+public enum AssetBundleType
+{
+    _00_BkgGameObjects,
+    _01_Images
+}
