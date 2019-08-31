@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
 
-public class AssetBundleDownload : MonoBehaviour
+public class BundleDownload : MonoBehaviour
 {
 
     string webLink;
@@ -45,10 +45,10 @@ public class AssetBundleDownload : MonoBehaviour
             string _webJson = www.downloadHandler.text;
             File.WriteAllText(gameTypePath + "Assets.json", _webJson);
         }
-        CompareTwoAssets();
+        CompareTwoBundles();
     }
 
-    void CompareTwoAssets()
+    void CompareTwoBundles()
     {
         for (int i = 0; i < allWebBundles.Length; i++)
         {

@@ -15,7 +15,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         {
             speech = MatchExtras.instance.GetSpeech(talkType);
             int count = speech.Split(' ').Length;
-            speechDuration.Value = count / 2;   //Konuşma süresinin toplam kelimelerin yarısı oluğunu sizden öğrenmiştim.
+            speechDuration.Value = count / 2;
             GetComponent<PlayerExtras>().PlayTTS(speech);
         }
     }

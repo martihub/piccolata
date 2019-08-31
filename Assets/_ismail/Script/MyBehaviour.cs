@@ -24,6 +24,7 @@ public class MyBehaviour : MonoBehaviour
         gObjs = BundleWorks.GetRandomAssets<GameObject>(GameType._00_Match, BundleType._00_BkgGameObjects);
         g = Instantiate(gObjs[0]);
         g.GetComponent<Renderer>().sharedMaterial.shader = Shader.Find("Standard");
+
     }
 
     public Type GetService<T>() where T : UnityEngine.Object

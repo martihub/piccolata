@@ -7,20 +7,28 @@ public class MatchManager : MonoBehaviour
 {
     public GameType gameType;
     public GameObject panel;
-    public Image image;
+    //  public Image image;
+    public Transform enviroMain;
     string gamesFolder = "Games";
     List<GameObject> slots = new List<GameObject>();
     List<GameObject> _slots;
+    Sprite[] sprites;
 
-    DirectoryInfo directoryInfo;
-    FileInfo[] allFiles;
+    private void Start()
+    {
+        sprites = BundleWorks.GetRandomAssets<Sprite>(GameType._00_Match, BundleType._01_Images);
+        GameObject enviro = Instantiate(BundleWorks.GetObject<GameObject>(GameType._00_Match, BundleType._00_BkgGameObjects, "00", "bgkgameobject"));
+        enviro.GetComponent<Renderer>().sharedMaterial.shader = Shader.Find("Standard");
+        enviro.transform.parent = enviroMain;
+        enviro.transform.localEulerAngles = Vector3.zero;
+        enviro.transform.localPosition = Vector3.zero;
+    }
 
     public void GenerateSlots(int _count)
     {
-        Debug.Log(_count);
         for (int i = 0; i < _count * 2; i++)
         {
-            GameObject slot = Instantiate(Resources.Load<GameObject>(gamesFolder + "/" + gameType.ToString() + "/" + "Slot"));
+            GameObject slot = Instantiate(Resources.Load<GameObject>(gamesFolder + "/" + gameType + "/" + "_etc" + "/" + "Slot"));
             slot.transform.parent = panel.transform;
             slots.Add(slot);
         }
@@ -35,22 +43,14 @@ public class MatchManager : MonoBehaviour
             }
 
         }
-
         GetComponent<BehaviorTree>().SetVariableValue("Slots", slots);
         List<GameObject> allSlots = new List<GameObject>(slots);
         GetComponent<BehaviorTree>().SetVariableValue("AllSlots", allSlots);
 
-        directoryInfo = new DirectoryInfo(Application.streamingAssetsPath + "/" + gamesFolder + "/" + gameType.ToString() + "/00");
-        allFiles = directoryInfo.GetFiles("*.png");
-        ImageCoroutine(_count);
-    }
-
-    void ImageCoroutine(int _count)
-    {
         for (int i = 0; i < _count * 2; i++)
         {
             int a = slots[i].GetComponent<MatchPart>().ID;
-            StartCoroutine(SpriteLoader.LoadSpriteIE(slots[i].GetComponent<Image>(), allFiles[a].ToString()));
+            slots[i].GetComponent<MatchPart>().SetFrontSprite(sprites[a]);
         }
     }
 }

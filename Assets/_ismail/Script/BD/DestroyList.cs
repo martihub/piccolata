@@ -16,7 +16,7 @@ public class DestroyList : Action
     {
         foreach (var item in list)
         {
-            GameObject.Destroy(item);
+            if (item) GameObject.Destroy(item);
         }
         return TaskStatus.Success;
     }

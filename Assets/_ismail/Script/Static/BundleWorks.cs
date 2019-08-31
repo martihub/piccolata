@@ -13,6 +13,36 @@ public static class BundleWorks
         return gObj;
     }
 
+    public static T[] GetRandomAssets<T>(GameType _gameType, BundleType _bundleType) where T : Object
+    {
+        List<string> bundleTitles = new List<string>();
+        List<string> bundleList = new List<string>();
+        AllBundles[] allBundles;
+        SetBundleLists(_gameType, out allBundles);
+
+        foreach (var item in allBundles)
+        {
+            if (item.Name == _bundleType.ToString())
+            {
+                foreach (var item2 in item.bundles)
+                {
+                    bundleList.Add(item2.Name);
+                }
+            }
+        }
+        int selected = Random.Range(0, bundleList.Count);
+        string bundlePath = GetBundleTypePath(_gameType, _bundleType) + bundleList[selected] + ".assetbundle";
+        AssetBundle assetBundle = AssetBundle.LoadFromFile(bundlePath);
+        string[] objectName = GetOnlyName(assetBundle);
+        assetBundle.Unload(false);
+        T[] objectArray = new T[objectName.Length];
+        for (int i = 0; i < objectArray.Length; i++)
+        {
+            objectArray[i] = GetObject<T>(_gameType, _bundleType, bundleList[selected], objectName[i]);
+        }
+        return objectArray;
+    }
+
     public static void SetBundleLists(GameType _gameType, out AllBundles[] _allAssetBundles)
     {
         var jsonToStr = GetJsonToStr(GetGameTypePath(_gameType) + "Assets.json");
@@ -54,36 +84,6 @@ public static class BundleWorks
                 _allAssetBundles[i].bundles[j].Version = jsonToStr[i][j]["Version"].AsInt;
             }
         }
-    }
-
-    public static T[] GetRandomAssets<T>(GameType _gameType, BundleType _bundleType) where T : Object
-    {
-        List<string> bundleTitles = new List<string>();
-        List<string> bundleList = new List<string>();
-        AllBundles[] allBundles;
-        SetBundleLists(_gameType, out allBundles);
-
-        foreach (var item in allBundles)
-        {
-            if (item.Name == _bundleType.ToString())
-            {
-                foreach (var item2 in item.bundles)
-                {
-                    bundleList.Add(item2.Name);
-                }
-            }
-        }
-        int selected = Random.Range(0, bundleList.Count);
-        string bundlePath = GetBundleTypePath(_gameType, _bundleType) + bundleList[selected] + ".assetbundle";
-        AssetBundle assetBundle = AssetBundle.LoadFromFile(bundlePath);
-        string[] objectName = GetOnlyName(assetBundle);
-        assetBundle.Unload(false);
-        T[] objectArray = new T[objectName.Length];
-        for (int i = 0; i < objectArray.Length; i++)
-        {
-            objectArray[i] = GetObject<T>(_gameType, _bundleType, bundleList[selected], objectName[i]);
-        }
-        return objectArray;
     }
 
     public static SimpleJSON.JSONNode GetJsonToStr(string _path)
