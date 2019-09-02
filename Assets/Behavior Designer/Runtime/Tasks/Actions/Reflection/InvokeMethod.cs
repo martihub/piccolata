@@ -29,7 +29,6 @@ namespace BehaviorDesigner.Runtime.Tasks
         public override TaskStatus OnUpdate()
         {
             var type = TaskUtility.GetTypeWithinAssembly(componentName.Value);
-            Debug.Log(type.Name);
             if (type == null)
             {
                 Debug.LogWarning("Unable to invoke - type is null");

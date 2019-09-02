@@ -95,12 +95,13 @@ public static class BundleWorks
 
     public static string GetGameTypePath(GameType _gameType)
     {
-        return Application.dataPath + "/_ismail/Bundles/" + _gameType + "/";
+        return Application.streamingAssetsPath + "/Bundles/" + _gameType + "/";
     }
 
     public static string GetBundleTypePath(GameType _gameType, BundleType _assetBundleType)
     {
-        return Application.dataPath + "/_ismail/Bundles/" + _gameType + "/" + _assetBundleType + "/";
+        //Application.streamingAssetsPath + "/Bundles/_00_Match/_00_BkgGameObjects/00.assetbundle";
+        return Application.streamingAssetsPath + "/Bundles/" + _gameType + "/" + _assetBundleType + "/";
     }
 
     public static string[] GetOnlyName(AssetBundle assetBundle)
@@ -108,8 +109,11 @@ public static class BundleWorks
         string[] str = assetBundle.GetAllAssetNames();
         for (int i = 0; i < str.Length; i++)
         {
+
             str[i] = Path.GetFileName(str[i]);
-            // str[i] = Path.GetFileNameWithoutExtension(str[i]);
+            str[i] = Path.GetFileNameWithoutExtension(str[i]);
+            str[i] = str[i].ToUpper();
+            Debug.Log(str[i]);
         }
         return str;
     }

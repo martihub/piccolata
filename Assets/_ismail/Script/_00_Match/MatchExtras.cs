@@ -34,8 +34,6 @@ public class MatchExtras : MonoBehaviour
         var _introWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/IntroWords.json"));
         var _goodbyeWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/GoodbyeWords.json"));
 
-        Debug.Log(_successWords["version"]);
-
         successWords = new string[_successWords["word"].Count];
         motivationWords = new string[_motivationWords["word"].Count];
         introWords = new string[_introWords["word"].Count];
