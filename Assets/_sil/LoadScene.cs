@@ -2,34 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Sirenix.OdinInspector;
 
 public class LoadScene : MonoBehaviour
 {
+    [ListDrawerSettings(ShowIndexLabels = true)] public string[] successWords;
+    [ListDrawerSettings(ShowIndexLabels = true)] public string[] motivationWords;
+    [ListDrawerSettings(ShowIndexLabels = true)] public string[] introWords;
+    [ListDrawerSettings(ShowIndexLabels = true)] public string[] goodbyeWords;
 
-    public void Asset_0()
+
+    private void Awake()
     {
-        // string str = Application.persistentDataPath + "/Assets/_ismail/Bundles/" + "_00_Match" + "/" + "_00_BkgGameObjects" + "/" + "00.assetbundle";
-        // string str = BundleWorks.GetBundleTypePath(GameType._00_Match, BundleType._00_BkgGameObjects) + "/" + "00.assetbundle";
-        GameObject enviro = Instantiate(BundleWorks.GetObject<GameObject>(GameType._00_Match, BundleType._00_BkgGameObjects, "00", "BgkGameobject"));
-        //var myLoadedAssetBundle = AssetBundle.LoadFromFile(str);
-        //GameObject gObj = myLoadedAssetBundle.LoadAsset<GameObject>("BgkGameobject");
-        //Instantiate(gObj);
-        //myLoadedAssetBundle.Unload(false);
+        BetterStreamingAssets.Initialize();
     }
 
-
-    public void Asset_1()
+    private void Start()
     {
-        SceneManager.LoadScene("00_Match");
-    }
 
-    //Application.persistentDataPath + "/../Assets
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Main");
-        }
+
+        //string _successWordsRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/SuccessWords.json");
+        //string _motivationRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/MotivationWords.json");
+        string _introRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/introWords.json");
+        //string _goodbyeRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/GoodbyeWords.json");
+
+
+
+        //var _successWords = SimpleJSON.JSON.Parse(_successWordsRaw);
+        //var _motivationWords = SimpleJSON.JSON.Parse(_motivationRaw);
+        var _introWords = SimpleJSON.JSON.Parse(_introRaw);
+        //var _goodbyeWords = SimpleJSON.JSON.Parse(_goodbyeRaw);
+
+        //Debug.Log(_successWords);
+        //Debug.Log(_motivationWords);
+        Debug.Log(_introWords);
+
+        //successWords = new string[_successWords["word"].Count];
+        //motivationWords = new string[_motivationWords["word"].Count];
+        introWords = new string[_introWords["word"].Count];
+        //goodbyeWords = new string[_goodbyeWords["word"].Count];
+
+        //for (int i = 0; i < _successWords["word"].Count; i++) successWords[i] = _successWords["word"][i];
+        //for (int i = 0; i < _motivationWords["word"].Count; i++) motivationWords[i] = _motivationWords["word"][i];
+        for (int i = 0; i < _introWords["word"].Count; i++) introWords[i] = _introWords["word"][i];
+        //for (int i = 0; i < _goodbyeWords["word"].Count; i++) goodbyeWords[i] = _goodbyeWords["word"][i];
     }
 }

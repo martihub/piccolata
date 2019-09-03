@@ -4,11 +4,10 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System.IO;
 using Better.StreamingAssets;
+using UnityEngine.UI;
 public class MatchExtras : MonoBehaviour
 {
-
-
-    public GameObject player;
+    // public GameObject player;
 
     [ListDrawerSettings(ShowIndexLabels = true)] public AudioClip[] successAudio;
     [ListDrawerSettings(ShowIndexLabels = true)] public AudioClip[] failureAudio;
@@ -26,20 +25,22 @@ public class MatchExtras : MonoBehaviour
         {
             instance = this;
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
         BetterStreamingAssets.Initialize();
-        //    var _successWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/SuccessWords.json"));
-        //    var _motivationWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json"));
-        //    var _introWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/IntroWords.json"));
-        //    var _goodbyeWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/GoodbyeWords.json"));
 
-        var _successWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/SuccessWords.json"));
-        var _motivationWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/MotivationWords.json"));
-        var _introWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/IntroWords.json"));
-        var _goodbyeWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/GoodbyeWords.json"));
+        string _successWordsRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/SuccessWords.json");
+        string _motivationRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/MotivationWords.json");
+        string _introRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/introWords.json");
+        string _goodbyeRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/GoodbyeWords.json");
+
+        var _successWords = SimpleJSON.JSON.Parse(_successWordsRaw);
+        var _motivationWords = SimpleJSON.JSON.Parse(_motivationRaw);
+        var _introWords = SimpleJSON.JSON.Parse(_introRaw);
+        var _goodbyeWords = SimpleJSON.JSON.Parse(_goodbyeRaw);
 
 
         successWords = new string[_successWords["word"].Count];
@@ -52,8 +53,6 @@ public class MatchExtras : MonoBehaviour
         for (int i = 0; i < _introWords["word"].Count; i++) introWords[i] = _introWords["word"][i];
         for (int i = 0; i < _goodbyeWords["word"].Count; i++) goodbyeWords[i] = _goodbyeWords["word"][i];
 
-
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void PlaySuccessAudio(int selected)

@@ -11,11 +11,12 @@ public class ManageGoogleWords : MonoBehaviour
     void Awake()
     {
         if (!instance) instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+
     }
 
     private string words;
@@ -25,10 +26,4 @@ public class ManageGoogleWords : MonoBehaviour
         StartCoroutine(SpeechDownloader.DownloadTheAudio(audioSource, words));
         Debug.Log(words);
     }
-
-    public void Aloooo()
-    {
-
-    }
-
 }
