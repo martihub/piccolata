@@ -329,6 +329,7 @@ MonoBehaviour:
   gameType: 0
   panel: {fileID: 1386566293}
   enviroMain: {fileID: 670538295}
+  sprites: []
 --- !u!114 &242525646
 MonoBehaviour:
   m_ObjectHideFlags: 0

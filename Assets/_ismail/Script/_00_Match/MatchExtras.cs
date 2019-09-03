@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.IO;
+using Better.StreamingAssets;
 public class MatchExtras : MonoBehaviour
 {
 
@@ -29,10 +30,17 @@ public class MatchExtras : MonoBehaviour
 
     private void Start()
     {
-        var _successWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/SuccessWords.json"));
-        var _motivationWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json"));
-        var _introWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/IntroWords.json"));
-        var _goodbyeWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/GoodbyeWords.json"));
+        BetterStreamingAssets.Initialize();
+        //    var _successWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/SuccessWords.json"));
+        //    var _motivationWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/MotivationWords.json"));
+        //    var _introWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/IntroWords.json"));
+        //    var _goodbyeWords = SimpleJSON.JSON.Parse(File.ReadAllText(Application.streamingAssetsPath + "/Games/_00_Match/Json/GoodbyeWords.json"));
+
+        var _successWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/SuccessWords.json"));
+        var _motivationWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/MotivationWords.json"));
+        var _introWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/IntroWords.json"));
+        var _goodbyeWords = SimpleJSON.JSON.Parse(BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/GoodbyeWords.json"));
+
 
         successWords = new string[_successWords["word"].Count];
         motivationWords = new string[_motivationWords["word"].Count];

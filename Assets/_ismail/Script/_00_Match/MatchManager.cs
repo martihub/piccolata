@@ -16,17 +16,11 @@ public class MatchManager : MonoBehaviour
 
     private void Start()
     {
-        GameObject enviro = Instantiate(BundleWorks.GetObject<GameObject>(GameType._00_Match, BundleType._00_BkgGameObjects, "00", "BgkGameobject"));
+        GameObject enviro = Instantiate(BundleWorks.GetObject<GameObject>(GameType._00_Match, BundleType._00_BkgGameObjects, "00", "BkgGameobject"));
         //  enviro.GetComponent<Renderer>().sharedMaterial.shader = Shader.Find("Standard");
         enviro.transform.parent = enviroMain;
         enviro.transform.localEulerAngles = Vector3.zero;
         enviro.transform.localPosition = Vector3.zero;
-
-        //string str = Application.streamingAssetsPath + "/Bundles/_00_Match/_00_BkgGameObjects/00.assetbundle";
-        //var myLoadedAssetBundle = AssetBundle.LoadFromFile(str);
-        //GameObject gObj = myLoadedAssetBundle.LoadAsset<GameObject>("BgkGameobject");
-        //Instantiate(gObj);
-        //myLoadedAssetBundle.Unload(false);
         sprites = BundleWorks.GetRandomAssets<Sprite>(GameType._00_Match, BundleType._01_Images);
     }
 

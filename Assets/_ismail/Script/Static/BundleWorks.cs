@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Better.StreamingAssets;
 public static class BundleWorks
 {
     public static T GetObject<T>(GameType _gameType, BundleType _bundleType, string _bundleName, string _gameObjectName) where T : Object
@@ -45,7 +46,10 @@ public static class BundleWorks
 
     public static void SetBundleLists(GameType _gameType, out AllBundles[] _allAssetBundles)
     {
-        var jsonToStr = GetJsonToStr(GetGameTypePath(_gameType) + "Assets.json");
+        BetterStreamingAssets.Initialize();
+        string jsonRaw = BetterStreamingAssets.ReadAllText("/Bundles/" + _gameType + "/Assets.json");
+        var jsonToStr = SimpleJSON.JSON.Parse(jsonRaw);
+
         List<string> bundleTitles = new List<string>();
         foreach (var item in jsonToStr.Keys) bundleTitles.Add(item);
         _allAssetBundles = new AllBundles[jsonToStr.Count];
