@@ -117,7 +117,6 @@ public static class BundleWorks
             str[i] = Path.GetFileName(str[i]);
             str[i] = Path.GetFileNameWithoutExtension(str[i]);
             str[i] = str[i].ToUpper();
-            Debug.Log(str[i]);
         }
         return str;
     }

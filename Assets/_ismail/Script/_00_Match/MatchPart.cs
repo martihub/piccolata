@@ -2,6 +2,7 @@
 using BehaviorDesigner.Runtime;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class MatchPart : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MatchPart : MonoBehaviour
     public bool isOK, isClicked;
     public Sprite frontSprite, backSprite;
     public Image image;
+    public TextMeshProUGUI number;
     public AnimationCurve headShakeCurve;
     public AnimationCurve jumpCurve;
     private BehaviorTree behaviorTree;

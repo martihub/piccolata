@@ -43,7 +43,7 @@ public class MainAudioRecognition : MonoBehaviour
                 maxFreq = 44100;
             }
 
-            goAudioSource = this.GetComponent<AudioSource>();
+            goAudioSource = GetComponent<AudioSource>();
             goAudioSource.clip = Microphone.Start(null, true, 60, 44100);
         }
     }
@@ -134,7 +134,7 @@ public class MainAudioRecognition : MonoBehaviour
         }
         var newClip = AudioClip.Create(goAudioSource.clip.name, position, goAudioSource.clip.channels, goAudioSource.clip.frequency, false, false);
         newClip.SetData(newData, 0);
-        AudioClip.Destroy(goAudioSource.clip);
+        Destroy(goAudioSource.clip);
         goAudioSource.clip = Microphone.Start(null, true, 60, maxFreq);
         float filenameRand = UnityEngine.Random.Range(0.0f, 10.0f);
         string filename = "testing" + filenameRand;
@@ -186,7 +186,7 @@ public class MainAudioRecognition : MonoBehaviour
                     textRecBox.text = transcripts;
                     speechOut = true;
                     ManageGoogleWords.instance.SetWords(transcripts);
-                    TestTTS.sound_text = transcripts;
+                    // TestTTS.sound_text = transcripts;
                 }
             }
         }

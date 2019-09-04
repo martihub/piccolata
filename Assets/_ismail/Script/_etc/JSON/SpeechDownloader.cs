@@ -14,6 +14,5 @@ public static class SpeechDownloader
         yield return www;
         audioSource.clip = www.GetAudioClip(false, false, AudioType.MPEG);
         audioSource.Play();
-        Debug.Log("GELDİ");
     }
 }

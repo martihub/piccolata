@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using BehaviorDesigner.Runtime;
-public class MatchManager : MonoBehaviour
+public class MatchCreator : MonoBehaviour
 {
     public GameType gameType;
     public GameObject panel;
@@ -14,6 +14,15 @@ public class MatchManager : MonoBehaviour
     List<GameObject> _slots;
     public Sprite[] sprites;
 
+    public static MatchCreator instance;
+    private void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+        }
+    }
+
     private void Start()
     {
         GameObject enviro = Instantiate(BundleWorks.GetObject<GameObject>(GameType._00_Match, BundleType._00_BkgGameObjects, "00", "BkgGameobject"));
@@ -23,7 +32,7 @@ public class MatchManager : MonoBehaviour
         enviro.transform.localPosition = Vector3.zero;
         sprites = BundleWorks.GetRandomAssets<Sprite>(GameType._00_Match, BundleType._01_Images);
     }
-
+    public List<GameObject> allSlots;
     public void GenerateSlots(int _count)
     {
         for (int i = 0; i < _count * 2; i++)
@@ -44,13 +53,14 @@ public class MatchManager : MonoBehaviour
 
         }
         GetComponent<BehaviorTree>().SetVariableValue("Slots", slots);
-        List<GameObject> allSlots = new List<GameObject>(slots);
+        allSlots = new List<GameObject>(slots);
         GetComponent<BehaviorTree>().SetVariableValue("AllSlots", allSlots);
 
         for (int i = 0; i < _count * 2; i++)
         {
             int a = slots[i].GetComponent<MatchPart>().ID;
             slots[i].GetComponent<MatchPart>().SetFrontSprite(sprites[a]);
+            slots[i].GetComponent<MatchPart>().number.text = (i + 1).ToString();
         }
     }
 }
