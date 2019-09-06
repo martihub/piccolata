@@ -47,4 +47,7 @@ public class LoadScene : MonoBehaviour
         for (int i = 0; i < _introWords["word"].Count; i++) introWords[i] = _introWords["word"][i];
         //for (int i = 0; i < _goodbyeWords["word"].Count; i++) goodbyeWords[i] = _goodbyeWords["word"][i];
     }
+
+
+
 }
