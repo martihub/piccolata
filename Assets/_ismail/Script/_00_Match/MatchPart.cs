@@ -24,14 +24,22 @@ public class MatchPart : MonoBehaviour
 
     public void SendEvent()
     {
-        var isClickable = (SharedBool)behaviorTree.GetVariable("IsClickable");
-        var myIntVariable = (SharedInt)behaviorTree.GetVariable("MyVariable");
-        if (!isOK && !isClicked && isClickable.Value)
+        if (IsClickable())
         {
             behaviorTree.SendEvent<object>("SlotClick", gameObject);
-            isClicked = true;
+            //isClicked = true;
         }
     }
+
+    public bool IsClickable()
+    {
+
+        var isClickable = ((SharedBool)behaviorTree.GetVariable("IsClickable")).Value;
+        Debug.Log(isOK + " " + isClicked + " " + isClickable);
+        return !isOK && !isClicked && isClickable ? true : false;
+    }
+
+
 
     public void ChangeSprite(bool isFront, float duration, bool headShake)
     {

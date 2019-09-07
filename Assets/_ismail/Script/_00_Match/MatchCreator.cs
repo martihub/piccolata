@@ -7,6 +7,7 @@ public class MatchCreator : MonoBehaviour
 {
     public GameType gameType;
     public GameObject panel;
+    public Sprite sprite;
     //  public Image image;
     public Transform enviroMain;
     string gamesFolder = "Games";
@@ -20,6 +21,7 @@ public class MatchCreator : MonoBehaviour
         if (!instance)
         {
             instance = this;
+            Debug.Log("hadi bakalım");
         }
     }
 
@@ -38,6 +40,7 @@ public class MatchCreator : MonoBehaviour
         for (int i = 0; i < _count * 2; i++)
         {
             GameObject slot = Instantiate(Resources.Load<GameObject>(gamesFolder + "/" + gameType + "/" + "_etc" + "/" + "Slot"));
+            
             slot.transform.parent = panel.transform;
             slots.Add(slot);
         }
@@ -63,5 +66,7 @@ public class MatchCreator : MonoBehaviour
             slots[i].GetComponent<MatchPart>().number.text = (i + 1).ToString();
         }
     }
+        
 }
+
 

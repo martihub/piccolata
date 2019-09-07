@@ -19,8 +19,6 @@ public class LoadScene : MonoBehaviour
 
     private void Start()
     {
-
-
         //string _successWordsRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/SuccessWords.json");
         //string _motivationRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/MotivationWords.json");
         string _introRaw = BetterStreamingAssets.ReadAllText("Games/_00_Match/Json/introWords.json");

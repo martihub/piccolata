@@ -48,7 +48,7 @@ public class ManageGoogleWords : MonoBehaviour
     int a;
     IEnumerator _00_MatchIE()
     {
-
+        Debug.Log("aloo");
         if (ints[0] != -1 && ints[1] != -1)//İkisi aynı anda geldi demek ki...
         {
             a = ints[0] - 1;

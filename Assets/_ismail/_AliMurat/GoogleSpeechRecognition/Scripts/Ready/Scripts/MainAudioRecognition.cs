@@ -21,7 +21,7 @@ public class MainAudioRecognition : MonoBehaviour
     private bool recording = false;
     private float recording_time = 0.0f;
 
-    private readonly float sensitivity = 0.15f;
+    private readonly float sensitivity = 0.25f;
 
     private int minFreq;
     private int maxFreq;

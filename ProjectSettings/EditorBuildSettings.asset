@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_ismail/Scenes/00_Match.unity
     guid: 67626bec214c0b445b50212ae4b6f09a
-  - enabled: 1
+  - enabled: 0
     path: Assets/_ismail/_AliMurat/Scenes/_MainGame.unity
     guid: ba245ebef6f27ce4d9cc5fd76c2db814
   m_configObjects: {}
