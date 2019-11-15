@@ -11,6 +11,14 @@ namespace BehaviorDesigner.Runtime.Tasks
         public string speech;
         public SharedFloat speechDuration;
 
+        //public override void OnStart()
+        //{
+        //    speech = MatchExtras.instance.GetSpeech(talkType);
+        //    int count = speech.Split(' ').Length;
+        //    speechDuration.Value = count / 2;
+        //    GetComponent<PlayerExtras>().PlayTTS(speech);
+        //}
+
         public override void OnStart()
         {
             speech = MatchExtras.instance.GetSpeech(talkType);
@@ -18,6 +26,7 @@ namespace BehaviorDesigner.Runtime.Tasks
             speechDuration.Value = count / 2;
             GetComponent<PlayerExtras>().PlayTTS(speech);
         }
+
     }
 }
 
