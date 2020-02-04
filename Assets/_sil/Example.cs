@@ -12,6 +12,7 @@ public class Example : MonoBehaviour
 
 
 
+
     public void Sifir()
     {
         StartCoroutine(SendParam(0));

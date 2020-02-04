@@ -26,6 +26,7 @@ public class EspMono : MonoBehaviour
     {
         if (!isSend)
         {
+            EspList.instance.SendParameterToEsp();
             _pluginInstance.Call("nextVoice", str);
             isSend = true;
             StartCoroutine(SendIE());
